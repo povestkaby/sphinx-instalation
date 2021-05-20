@@ -1,0 +1,17 @@
+[Unit]
+Description=Sphinx Search - Fast standalone full-text SQL search engine
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/searchd -c /etc/sphinx/sphinx.conf
+ExecStop=/usr/bin/killall searchd
+KillMode=process
+Restart=always
+RestartSec=15
+PIDFile=/etc/sphinx/sphinx.pid
+User=sphinx
+Group=sphinx
+
+[Install]
+WantedBy=multi-user.target
+Alias=sphinx.service
